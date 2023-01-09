@@ -1,0 +1,28 @@
+version: "3.9"
+services:
+  ipxserver:
+    restart: always
+    build: ipxbox/.
+    ports:
+      - "10000:10000/udp"
+    image: "artyomsoft/ipxbox"
+  gameserver1:
+    restart: always
+    build: quake-server/.
+    depends_on:
+      - ipxserver
+    environment:
+      - IPX_SERVER_ADDRESS=ipxserver
+      - IPX_SERVER_PORT=10000
+      - QUAKE_SERVER_NAME=DEFAULT_S1
+    image: "artyomsoft/quake-server"
+  gameserver2:
+    restart: always
+    build: quake-server/.
+    depends_on:
+      - ipxserver
+    environment:
+      - IPX_SERVER_ADDRESS=ipxserver
+      - IPX_SERVER_PORT=10000
+      - QUAKE_SERVER_NAME=DEFAULT_S2
+    image: "artyomsoft/quake-server"
