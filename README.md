@@ -14,29 +14,31 @@ How to use:
     $ chmod +x /usr/local/bin/docker-compose
     $ systemctl enable docker
 ```    
-4. Download *quake-for-dos-over-ipx*
+4. Download *quake-for-dos-over-ipx*.
 ```
     $ cd ~
     $ mkdir quake-servers 
+    $ cd quake-servers
     $ curl -SL https://github.com/artyomsoft/quake-for-dos-over-ipx/releases/download/v0.0.1/docker-compose.yml -o docker-compose.yml
 
 ```
-5. Start *quake-for-dos-over-ipx*
+5. Start *quake-for-dos-over-ipx*.
 ```
     $ docker-compose up -d
 ```
-6. Install [DOSBox Staging](https://dosbox-staging.github.io/) on your local machines you want to play the Quake from. Close DOSBox
-7. Enable ipx in *%USERPROFILE%\AppData\Local\DOSBox\dosbox-staging.conf*
+6. Download and unpack [Quake for DOS] (https://archive.org/download/quake_dos/Quake.zip).
+7. Install [DOSBox Staging](https://dosbox-staging.github.io/) on your local machines you want to play the Quake from. Close DOSBox.
+8. Enable ipx in *%USERPROFILE%\AppData\Local\DOSBox\dosbox-staging.conf*.
 ```
 [ipx]
 ipx = true
 ```
-8. Add commands to autoexec in *%USERPROFILE%\AppData\Local\DOSBox\dosbox-staging.conf*. If DOS Quake is located in *c:\games\quake*, and your VPS address is *your.vps.address* it will be
+9. Add commands to autoexec in *%USERPROFILE%\AppData\Local\DOSBox\dosbox-staging.conf*. If Quake for DOS is located in *c:\games\quake*, and your VPS address is *your.vps.address* it will be
 ```
 [autoexec]
 mount c: c:\games
 c:
 cd quake
-ipxnet connect  10000
+ipxnet connect your.vps.address 10000
 quake.exe -nocdaudio
 ```
